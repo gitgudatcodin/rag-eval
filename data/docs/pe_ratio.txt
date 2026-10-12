@@ -1,0 +1,7 @@
+The price-to-earnings ratio, or P/E, is the most quoted valuation multiple in equity markets. It is computed as the share price divided by earnings per share. A P/E of 20 means investors pay twenty dollars for each dollar of annual earnings.
+
+There are two main flavors. Trailing P/E uses the earnings of the past twelve months, which are known with certainty. Forward P/E uses analysts' estimates of next year's earnings, which reflect expectations but can be wrong. Growth stocks typically trade at high P/E ratios because investors expect earnings to expand; value stocks trade at low multiples.
+
+The ratio has well-known limits. Earnings can be depressed temporarily, making a healthy company look expensive. Companies with negative earnings have no meaningful P/E at all. Accounting choices also distort earnings, which is why some investors prefer multiples based on cash flow or sales.
+
+A common use is relative comparison: a stock's P/E versus its own history, versus peers, or versus the market. A below-peer P/E may signal a bargain, or it may signal that the market correctly expects slower growth. The multiple alone never tells you which.

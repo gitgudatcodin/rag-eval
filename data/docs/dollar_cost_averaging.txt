@@ -1,0 +1,7 @@
+Dollar-cost averaging means investing a fixed amount of money on a regular schedule, regardless of market prices. For example, buying five hundred dollars of an index fund every month. When prices are high, the fixed sum buys fewer shares; when prices fall, it buys more. Over time the average cost per share sits below the average market price.
+
+The main appeal is behavioral, not mathematical. Most investors cannot time the market, and lump-sum investing at a peak is painful. A fixed schedule removes the decision entirely, which keeps people invested through downturns instead of panic-selling.
+
+Studies comparing lump-sum investing to dollar-cost averaging generally find that investing everything at once wins on average, because markets rise more often than they fall. Dollar-cost averaging wins on regret: it limits the damage of spectacularly bad timing and helps nervous investors participate at all.
+
+It works best with low-cost diversified funds held for years. Applied to a single volatile stock, the same schedule concentrates risk rather than diversifying it. The schedule matters less than the habit: regular contributions, reinvested dividends, and the patience to leave the money alone.

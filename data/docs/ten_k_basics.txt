@@ -1,0 +1,7 @@
+A 10-K is the annual report that US public companies must file with the Securities and Exchange Commission. It is the most comprehensive regular disclosure a company makes, and it is far more detailed than the glossy annual report sent to shareholders.
+
+The filing is organized into four parts. Part I describes the business itself: what the company sells, its markets, and risk factors. The risk factors section is worth reading carefully, because companies must disclose the things that could actually hurt them, from customer concentration to regulatory exposure. Part I also covers unresolved staff comments and cybersecurity disclosures.
+
+Part II contains the financial statements: the income statement, balance sheet, and cash flow statement, plus management's discussion and analysis, known as MD&A. In MD&A, management explains in plain language why revenue, margins, and cash flow moved the way they did. It is one of the best places to understand the business narrative behind the numbers.
+
+Part III covers governance: executive compensation, board members, and related-party transactions. Part IV lists exhibits, including the full financial statement schedules. The 10-K is filed on SEC EDGAR, where every filing is freely available as structured data, which makes it a favorite source for quantitative researchers building fundamental datasets.

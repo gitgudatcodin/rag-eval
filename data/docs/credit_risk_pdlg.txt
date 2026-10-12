@@ -1,0 +1,7 @@
+Credit risk modeling breaks expected loss into three components, together known as PD, LGD, and EAD. Expected loss equals PD times LGD times EAD.
+
+PD is the probability of default: the likelihood that a borrower fails to repay within a given horizon, usually one year. Banks estimate PD with statistical models, most commonly logistic regression on borrower characteristics such as credit score, income, debt-to-income ratio, and payment history. The model outputs a score that is calibrated into a probability.
+
+LGD is loss given default: the share of the exposure the lender actually loses if default happens. A mortgage has low LGD because the house can be sold to recover most of the loan; an unsecured credit card has high LGD. EAD is exposure at default: the amount outstanding when default occurs, which for revolving credit includes an estimate of how much of the unused line the borrower will draw down first.
+
+Regulators care deeply about these models. Under the Basel framework, banks using the internal ratings-based approach must estimate PD, LGD, and EAD themselves and hold capital against the results. Supervisors validate the models under guidance like SR 11-7, which demands conceptual soundness, ongoing monitoring, and independent validation.

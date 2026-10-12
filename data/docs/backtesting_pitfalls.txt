@@ -1,0 +1,9 @@
+Backtesting means simulating a trading strategy on historical data to estimate how it would have performed. Done well, it filters out bad ideas before they touch real capital. Done poorly, it manufactures false confidence.
+
+The most dangerous pitfall is look-ahead bias: accidentally using information that was not available at the time of the simulated trade. A classic example is ranking stocks on financial ratios from annual reports before those reports were actually published. The fix is point-in-time data, where every input is timestamped by when it became known.
+
+Survivorship bias is the second trap. If your historical universe only contains companies that exist today, you have silently deleted every bankruptcy and delisting, which flatters the results. A proper backtest reconstructs the investable universe as it looked on each historical date.
+
+Overfitting is the third. With enough parameters, any strategy can be tuned to look brilliant in-sample. Defenses include keeping models simple, testing on out-of-sample periods, and demanding that performance hold across different market regimes and countries.
+
+Finally, a backtest is not reality: it usually ignores transaction costs, market impact, and the fact that publishing a strategy can erode its edge. Treat backtest returns as an upper bound, not a promise.
