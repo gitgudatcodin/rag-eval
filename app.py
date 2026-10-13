@@ -5,6 +5,14 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import streamlit as st
 
+# Streamlit Cloud exposes Secrets via st.secrets, not env vars — copy them
+# into the environment before rag.config reads it, so RAG_LLM_* secrets work.
+try:
+    for _key, _val in st.secrets.items():
+        os.environ.setdefault(_key, str(_val))
+except Exception:
+    pass
+
 from rag import config
 from rag.generate import LLMClient, answer_question
 from run_eval import build_index, serving_retriever
