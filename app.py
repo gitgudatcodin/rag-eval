@@ -7,15 +7,17 @@ import streamlit as st
 
 from rag import config
 from rag.generate import LLMClient, answer_question
-from run_eval import serving_retriever
+from run_eval import build_index, serving_retriever
 
 st.set_page_config(page_title="RAG Q&A", layout="wide")
 st.title("RAG Document Q&A")
 
 if "retriever" not in st.session_state:
     if not os.path.exists(os.path.join(config.STORE_DIR, "vectors.npy")):
-        st.error("No index found. Run `python run_eval.py --rebuild` first.")
-        st.stop()
+        # First run (e.g. fresh Streamlit Cloud deploy): build the index
+        # from data/docs/ automatically instead of erroring out.
+        with st.spinner("Building index from documents (first run only)..."):
+            build_index()
     st.session_state.retriever = serving_retriever()
 
 llm = LLMClient()

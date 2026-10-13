@@ -17,6 +17,21 @@ streamlit run app.py           # ask questions in the browser
 Drop your own `.txt`, `.md`, or `.pdf` files into `data/docs/` and re-run
 `--rebuild` to query them. Add questions to `data/eval_questions.json`.
 
+## Deploy to Streamlit Cloud
+
+The app builds its index automatically on first run, so no local build is
+needed before deploying:
+
+1. Push this folder to a GitHub repo (the included `.gitignore` excludes
+   `.venv/` and the generated index).
+2. On [share.streamlit.io](https://share.streamlit.io): **New app** → pick the
+   repo → main file `app.py` → **Deploy**. Streamlit installs
+   `requirements.txt` and builds the index from `data/docs/` on first boot.
+3. Optional LLM mode: add `RAG_LLM_BASE_URL` / `RAG_LLM_API_KEY` /
+   `RAG_LLM_MODEL` in the app's **Settings → Secrets**. A local Ollama
+   (`localhost`) is not reachable from Streamlit Cloud — use a hosted
+   OpenAI-compatible endpoint. Without an LLM the app runs in extractive mode.
+
 ## Architecture
 
 ```
