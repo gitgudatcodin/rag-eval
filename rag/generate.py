@@ -53,7 +53,16 @@ def answer_question(query, chunks, llm=None):
     llm = llm or LLMClient()
     if llm.configured:
         prompt = f"Context:\n{build_context(chunks)}\n\nQuestion: {query}"
-        return llm.complete(SYSTEM_PROMPT, prompt), "llm"
+        try:
+            return llm.complete(SYSTEM_PROMPT, prompt), "llm"
+        except Exception as exc:
+            # Never crash the app on an LLM error (bad/retired model name,
+            # rate limit, network): degrade to the extractive answer and
+            # say why, so the failure is visible instead of a traceback.
+            top = chunks[0][2]["text"]
+            answer = (f"(LLM call failed: {exc} — showing the top retrieved "
+                      f"passage instead.)\n\n" + top[:800])
+            return answer, "extractive"
     # Extractive fallback: no LLM configured — return the top chunks verbatim.
     top = chunks[0][2]["text"]
     answer = ("Based on the retrieved documents (no LLM configured, "

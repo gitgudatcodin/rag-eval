@@ -31,6 +31,14 @@ needed before deploying:
    `RAG_LLM_MODEL` in the app's **Settings → Secrets**. A local Ollama
    (`localhost`) is not reachable from Streamlit Cloud — use a hosted
    OpenAI-compatible endpoint. Without an LLM the app runs in extractive mode.
+4. Optional neural embeddings: by default the cloud deploy uses the TF-IDF
+   fallback (sentence-transformers pulls in ~2 GB of PyTorch, heavy for the
+   free tier). For neural embeddings without that install, add these Secrets
+   instead — the app rebuilds its index with the new embedder automatically:
+   `RAG_EMBEDDER = "api"`,
+   `RAG_EMBEDDING_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai"`,
+   `RAG_EMBEDDING_API_KEY = "<Google AI Studio key>"`,
+   `RAG_EMBEDDING_MODEL = "gemini-embedding-001"` (free tier).
 
 ## Architecture
 
@@ -47,7 +55,11 @@ data/docs/  ->  ingest (chunk 500 chars / 80 overlap)
 
 | Env var | Purpose |
 |---|---|
-| `RAG_EMBEDDER` | `auto` (default), `st`, or `tfidf` |
+| `RAG_EMBEDDER` | `auto` (default), `st`, `tfidf`, or `api` |
+| `RAG_ST_MODEL` | sentence-transformers model when backend is `st` |
+| `RAG_EMBEDDING_BASE_URL` | embeddings API base (backend `api`), e.g. Gemini below |
+| `RAG_EMBEDDING_API_KEY` | embeddings API key (backend `api`) |
+| `RAG_EMBEDDING_MODEL` | embeddings model (backend `api`), e.g. `gemini-embedding-001` |
 | `RAG_LLM_BASE_URL` | e.g. `http://localhost:11434/v1` for Ollama |
 | `RAG_LLM_API_KEY` | API key if the endpoint needs one |
 | `RAG_LLM_MODEL` | model name, e.g. `llama3.1` |

@@ -137,7 +137,7 @@ rag-eval-app/
 │   ├── __init__.py           # empty; marks rag/ as a package
 │   ├── config.py             # paths, chunk sizes, env-var settings
 │   ├── ingest.py             # load .txt/.md/.pdf → word-aware chunks
-│   ├── embeddings.py         # sentence-transformers OR TF-IDF backend
+│   ├── embeddings.py         # sentence-transformers, hosted API, or TF-IDF
 │   ├── store.py              # numpy cosine-similarity vector store
 │   ├── retrieve.py           # query embedding → top-k search
 │   ├── generate.py           # grounded LLM call / extractive fallback
@@ -263,6 +263,13 @@ tuning is a config change, not a code change.
   `"st"`, ImportError → `"tfidf"`. The backend choice is explicit and logged.
 - `"st"` path: loads `all-MiniLM-L6-v2` (384-dimensional, fast, good
   general-purpose quality) and encodes with `convert_to_numpy=True`.
+- `"api"` path: POSTs the texts to any OpenAI-compatible `/embeddings`
+  endpoint (`RAG_EMBEDDING_BASE_URL` / `RAG_EMBEDDING_API_KEY` /
+  `RAG_EMBEDDING_MODEL`). Neural embeddings with no local model install —
+  the practical choice on Streamlit Cloud, where sentence-transformers'
+  PyTorch dependency is ~2 GB. Gemini's free `gemini-embedding-001` works
+  here. Responses are re-sorted by `index` before use, since the API does
+  not promise return order.
 - `"tfidf"` path: `TfidfVectorizer(max_features=20000, ngram_range=(1,2),
   stop_words="english")`. Bigrams (`ngram_range=(1,2)`) capture phrases like
   "expected loss"; stop-word removal drops noise like "the". Must call

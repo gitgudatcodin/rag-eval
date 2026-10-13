@@ -21,10 +21,18 @@ st.set_page_config(page_title="RAG Q&A", layout="wide")
 st.title("RAG Document Q&A")
 
 if "retriever" not in st.session_state:
-    if not os.path.exists(os.path.join(config.STORE_DIR, "vectors.npy")):
-        # First run (e.g. fresh Streamlit Cloud deploy): build the index
-        # from data/docs/ automatically instead of erroring out.
-        with st.spinner("Building index from documents (first run only)..."):
+    _vectors = os.path.join(config.STORE_DIR, "vectors.npy")
+    _backend_file = os.path.join(config.STORE_DIR, "embedder.txt")
+    _stored = open(_backend_file).read().strip() if os.path.exists(_backend_file) else None
+    _want = os.environ.get("RAG_EMBEDDER", "auto")
+    # Rebuild when there is no index yet (e.g. fresh Streamlit Cloud deploy),
+    # or when RAG_EMBEDDER explicitly names a different backend than the one
+    # the stored index was built with — vectors from different embedders are
+    # incompatible (different dimensions and meaning), so serving must not
+    # silently reuse them.
+    _stale = _want != "auto" and _stored is not None and _want != _stored
+    if not os.path.exists(_vectors) or _stale:
+        with st.spinner("Building index from documents..."):
             build_index()
     st.session_state.retriever = serving_retriever()
 
